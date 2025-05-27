@@ -5,6 +5,7 @@ import plotly.express as px
 import plotly.io as pio
 import plotly.graph_objects as go
 from shapely import wkt
+import duckdb
 
 # -------------------------------------------------
 # 🎨  Identidade visual
@@ -54,21 +55,6 @@ st.markdown(
     </style>
     """, unsafe_allow_html=True)
 
-# -------------------------------------------------
-# 📂 Carregamento dos dados (cache)
-# -------------------------------------------------
-@st.cache_data(show_spinner="Carregando dados…")
-def load_data():
-    df = pd.read_csv("../data/base_municipios_brasileiros_flt.csv")
-    municipalities = pd.read_csv("../data/municipalities.csv")
-    return df, municipalities
-
-try:
-    df, municipalities = load_data()
-except Exception as e:
-    st.error(f"Erro ao carregar dados: {e}")
-    st.stop()
-
 st.sidebar.image("../img/mape.jpg", use_container_width=True)
 st.sidebar.markdown(
     """
@@ -82,10 +68,17 @@ st.sidebar.markdown(
 
 
 # -------------------------------------------------
+# 📂 DuckDB connection & lazy tables
+# -------------------------------------------------
+con = duckdb.connect("../data/mape.duckdb")
+
+
+# -------------------------------------------------
 # 🔢 Preparação de variáveis 
 # -------------------------------------------------
 exclude_cols = ["ano", "id_municipio", "geometry"]
-indicator_cols = [c for c in df.columns if c not in exclude_cols]
+cols_info = con.sql("PRAGMA table_info('mape_municipios')").df()
+indicator_cols = [c for c in cols_info["name"].tolist() if c not in exclude_cols]
 
 
 # -------------------------------------------------
@@ -97,7 +90,10 @@ padrao = "total_desastres" if "total_desastres" in indicator_cols else indicator
 indicador1 = st.sidebar.selectbox("Indicador principal:", indicator_cols,
                                  index=indicator_cols.index(padrao))
 
-anos_validos = sorted(df.loc[df[indicador1].notna(), "ano"].unique())
+anos_validos = con.sql(
+    f"SELECT DISTINCT ano FROM mape_municipios WHERE {indicador1} IS NOT NULL ORDER BY ano"
+).df()["ano"].tolist()
+
 if not anos_validos:
     st.error("Indicador selecionado sem valores.")
     st.stop()
@@ -139,11 +135,14 @@ st.markdown("---")
 # -------------------------------------------------
 st.subheader(f"🌎 Distribuição territorial » {indicador1.replace('_',' ').capitalize()} ({ano})")
 
-map_df = (
-    df[df["ano"] == ano]
-      .merge(municipalities, left_on="id_municipio", right_on="code_muni", how="left")
-      .dropna(subset=["geometry"])
-)
+map_df = con.sql(
+    f"""
+    SELECT d.id_municipio, d.{indicador1}, m.geometry
+    FROM mape_municipios d
+    JOIN municipalities m ON d.id_municipio = m.code_muni
+    WHERE d.ano = {ano} AND m.geometry IS NOT NULL
+    """
+).df()
 map_df["geometry"] = map_df["geometry"].apply(wkt.loads)
 gdf = gpd.GeoDataFrame(map_df, geometry="geometry")
 
@@ -162,8 +161,13 @@ fig_map = px.choropleth_map(
     template="mape",
 )
 # Barra de cor horizontal
-fig_map.update_coloraxes(colorbar=dict(title="", orientation="h", x=0.5, y=-0.15,
-                                       xanchor="center", yanchor="top", len=0.7,
+fig_map.update_coloraxes(colorbar=dict(title="", 
+                                       orientation="h", 
+                                       x=0.5, 
+                                       y=-0.15,
+                                       xanchor="center", 
+                                       yanchor="top", 
+                                       len=0.7,
                                        thickness=15))
 
 # aumenta o tamanho do mapa
@@ -181,9 +185,16 @@ st.markdown("---")
 # -------------------------------------------------
 st.subheader(f"📈 Evolução temporal » {indicador1.replace('_',' ').capitalize()} ({ano})")
 
-line_df = df.groupby("ano")[indicador1].sum().reset_index().sort_values("ano")
-line_df.query(f"{indicador1} > 0", inplace=True)
-
+line_df = con.sql(
+    f"""
+    SELECT ano, SUM({indicador1}) AS {indicador1}
+    FROM mape_municipios
+    WHERE {indicador1} IS NOT NULL
+    GROUP BY ano
+    HAVING SUM({indicador1}) > 0
+    ORDER BY ano
+    """
+).df()
 
 fig_line = px.area(
     line_df,
@@ -221,7 +232,13 @@ st.markdown("---")
 # -------------------------------------------------
 st.subheader(f"🔬 Relação entre indicadores » {indicador1.replace('_',' ').capitalize()} x  {indicador2.replace('_',' ').capitalize()} ({ano})")
 
-scat_df = df[df["ano"] == ano].dropna(subset=[indicador1, indicador2])
+scat_df = con.sql(
+    f"""
+    SELECT id_municipio, {indicador1}, {indicador2}
+    FROM mape_municipios
+    WHERE ano = {ano} AND {indicador1} IS NOT NULL AND {indicador2} IS NOT NULL
+    """,
+).df()
 
 if scat_df.empty:
     st.info("Sem dados suficientes para o scatterplot.")

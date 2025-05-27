@@ -174,3 +174,5 @@ cython_debug/
 .pypirc
 
 base_municipios_brasileiros.csv
+municipalities.csv
+base_municipios_brasileiros_flt.csv
