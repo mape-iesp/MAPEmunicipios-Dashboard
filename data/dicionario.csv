@@ -1,0 +1,452 @@
+Nome_original,Nome_banco,Dimensão,Descrição,Operacionalização
+id_municipio,id_municipio,Identificação,ID Município - IBGE 7 Dígitos,STRING
+id_municipio_6,id_municipio_6,Identificação,ID Município - IBGE 6 Dígitos,STRING
+id_municipio_tse,id_municipio_tse,Identificação,ID Município - Tribunal Superior Eleitoral (TSE),STRING
+id_municipio_rf,id_municipio_rf,Identificação,ID Município - Receita Federal (RF),STRING
+id_municipio_bcb,id_municipio_bcb,Identificação,ID Município - Banco Central do Brasil (BCB),STRING
+nome_municipio,nome_municipio,Identificação,Nome do município,STRING
+capital_uf,capital_uf,Identificação,Município é a Capital da Unidade da Federação,INT64
+id_comarca,id_comarca,Identificação,ID Sede Comarca,STRING
+id_regiao_saude,id_regiao_saude,Identificação,ID Região de Saúde,STRING
+nome_regiao_saude,nome_regiao_saude,Identificação,Nome da Região de Saúde,STRING
+id_regiao_imediata,id_regiao_imediata,Identificação,ID Região Imediata - IBGE,STRING
+nome_regiao_imediata,nome_regiao_imediata,Identificação,Nome da Região Imediata,STRING
+id_regiao_intermediaria,id_regiao_intermediaria,Identificação,ID Região Intermediária - IBGE,STRING
+nome_regiao_intermediaria,nome_regiao_intermediaria,Identificação,Nome da Região Intermediária,STRING
+id_microrregiao,id_microrregiao,Identificação,ID Microrregião - IBGE,STRING
+nome_microrregiao,nome_microrregiao,Identificação,Nome da Microrregião,STRING
+id_mesorregiao,id_mesorregiao,Identificação,ID Mesorregião - IBGE,STRING
+nome_mesorregiao,nome_mesorregiao,Identificação,Nome da Mesorregião,STRING
+id_regiao_metropolitana,id_regiao_metropolitana,Identificação,Lista de ID's da Região Metropolitana - IBGE,STRING
+nome_regiao_metropolitana,nome_regiao_metropolitana,Identificação,Lista de nomes da Região Metropolitana,STRING
+ddd,ddd,Identificação,Código de Discagem Direta a Distância (DDD),STRING
+id_uf,id_uf,Identificação,ID da Unidade da Federação - IBGE,STRING
+nome_uf,nome_uf,Identificação,Nome da Unidade da Federação,STRING
+nome_regiao,nome_regiao,Identificação,Nome da Grande Região Brasileira,STRING
+amazonia_legal,amazonia_legal,Identificação,Indicador se o município faz parte da Amazônia Legal,INT64
+centroide,centroide,Identificação,Centroide do município,GEOGRAPHY
+dimensao_identificao,dimensao_identificao,,,
+ano,ano,População,Ano da coleta de dados,NUM
+populacao,populacao,População,População estimada IBGE,NUM
+prop_catolicos,prop_catolicos,População,"Proporção da população católica, códigos do Censo de 2010 e 2000 retirados do ISER",STRING
+prop_evangelicos_pentecostais,prop_evangelicos_pentecostais,População,"Proporção da população evangélicos pentecostais, códigos do Censo de 2010 e 2000 retirados do ISER",NUM
+prop_evangelicos_missao,prop_evangelicos_missao,População,"Proporção da população evangélicos de missão, códigos do Censo de 2010 e 2000 retirados do ISER",NUM
+prop_espiritas,prop_espiritas,População,"Proporção da população espíritas, códigos do Censo de 2010 e 2000 retirados do ISER",NUM
+prop_matriz_africana,prop_matriz_africana,População,"Proporção da população religiões de matriz africana, códigos do Censo de 2010 e 2000 retirados do ISER",NUM
+ano_censo,ano_censo,População,Ano de realização do Censo,NUM
+dimensao_populacao,dimensao_populacao,,,
+total_desastres,total_desastres,Meio-Ambiente,Total desastres município ano,NUM
+total_pessoas_afetadas,total_pessoas_afetadas,Meio-Ambiente,Total pessoas afetadas desastres município ano,NUM
+total_danos_materiais,total_danos_materiais,Meio-Ambiente,Total danos materiais desastres município ano,NUM
+total_prejuizos_publicos,total_prejuizos_publicos,Meio-Ambiente,Total prejuízos públicos desastres município ano (valor deflacionado para dezembro de 2023),NUM
+total_prejuizos_privados,total_prejuizos_privados,Meio-Ambiente,Total prejuízos privados desastres município ano (valor deflacionado para dezembro de 2023),NUM
+total_desastres_climatologicos,total_desastres_climatologicos,Meio-Ambiente,Total desastres climatológicos município ano,NUM
+total_pessoas_afetadas_climatologicos,total_pessoas_afetadas_climatologicos,Meio-Ambiente,Total pessoas afetadas desastres climatológicos município ano,NUM
+total_danos_materiais_climatologicos,total_danos_materiais_climatologicos,Meio-Ambiente,Total danos materiais desastres climatológicos município ano,NUM
+total_prejuizos_publicos_climatologicos,total_prejuizos_publicos_climatologicos,Meio-Ambiente,Total prejuízos públicos desastres climatológicos município ano (valor deflacionado para dezembro de 2023),NUM
+total_prejuizos_privados_climatologicos,total_prejuizos_privados_climatologicos,Meio-Ambiente,Total prejuízos privados desastres climatológicos município ano (valor deflacionado para dezembro de 2023),NUM
+total_desastres_hidrologicos,total_desastres_hidrologicos,Meio-Ambiente,Total desastres hidrológicos município ano,NUM
+total_pessoas_afetadas_hidrologicos,total_pessoas_afetadas_hidrologicos,Meio-Ambiente,Total pessoas afetadas desastres hidrológicos município ano,NUM
+total_danos_materiais_hidrologicos,total_danos_materiais_hidrologicos,Meio-Ambiente,Total danos materiais desastres hidrológicos município ano,NUM
+total_prejuizos_publicos_hidrologicos,total_prejuizos_publicos_hidrologicos,Meio-Ambiente,Total prejuízos públicos desastres hidrológicos município ano (valor deflacionado para dezembro de 2023),NUM
+total_prejuizos_privados_hidrologicos,total_prejuizos_privados_hidrologicos,Meio-Ambiente,Total prejuízos privados desastres hidrológicos município ano (valor deflacionado para dezembro de 2023),NUM
+total_desastres_meteorologicos,total_desastres_meteorologicos,Meio-Ambiente,Total desastres meteorológicos município ano,NUM
+total_pessoas_afetadas_meteorologicos,total_pessoas_afetadas_meteorologicos,Meio-Ambiente,Total pessoas afetadas desastres meteorológicos município ano,NUM
+total_danos_materiais_meteorologicos,total_danos_materiais_meteorologicos,Meio-Ambiente,Total danos materiais desastres meteorológicos município ano,NUM
+total_prejuizos_publicos_meteorologicos,total_prejuizos_publicos_meteorologicos,Meio-Ambiente,Total prejuízos públicos desastres meteorológicos município ano (valor deflacionado para dezembro de 2023),NUM
+total_prejuizos_privados_meteorologicos,total_prejuizos_privados_meteorologicos,Meio-Ambiente,Total prejuízos privados desastres meteorológicos município ano (valor deflacionado para dezembro de 2023),NUM
+total_desastres_outros,total_desastres_outros,Meio-Ambiente,Total desastres outros município ano,NUM
+total_pessoas_afetadas_outros,total_pessoas_afetadas_outros,Meio-Ambiente,Total pessoas afetadas desastres outros  município ano,NUM
+total_danos_materiais_outros,total_danos_materiais_outros,Meio-Ambiente,Total danos materiais desastres outros  município ano,NUM
+total_prejuizos_publicos_outros,total_prejuizos_publicos_outros,Meio-Ambiente,Total prejuízos públicos desastres outros  município ano (valor deflacionado para dezembro de 2023),NUM
+total_prejuizos_privados_outros,total_prejuizos_privados_outros,Meio-Ambiente,Total prejuízos privados desastres outros  município ano (valor deflacionado para dezembro de 2023),NUM
+populacao_atendida_agua,populacao_atendida_agua,Meio-Ambiente,AG001 - População total atendida com abastecimento de água,INT64
+populacao_atentida_esgoto,populacao_atentida_esgoto,Meio-Ambiente,ES001 - População total atendida com esgotamento sanitário,INT64
+populacao_urbana,populacao_urbana,Meio-Ambiente,População urbana do município do ano de referência (Fonte: IBGE),INT64
+populacao_urbana_residente_agua,populacao_urbana_residente_agua,Meio-Ambiente,G06A - População urbana residente do(s) município(s) com abastecimento de água,INT64
+populacao_urbana_atendida_esgoto,populacao_urbana_atendida_esgoto,Meio-Ambiente,G06B - População urbana residente do(s) município(s) com esgotamento sanitário,
+extensao_rede_agua,extensao_rede_agua,Meio-Ambiente,AG005 - Extensão da rede de água,FLOAT64
+extensao_rede_esgoto,extensao_rede_esgoto,Meio-Ambiente,ES004 - Extensão da rede de esgotos,FLOAT64
+quantidade_sede_municipal_agua,quantidade_sede_municipal_agua,Meio-Ambiente,GE008 - Quantidade de Sedes municipais atendidas com abastecimento de água,INT64
+quantidade_sede_municipal_esgoto,quantidade_sede_municipal_esgoto,Meio-Ambiente,GE009 - Quantidade de Sedes municipais atendidas com esgotamento sanitário,INT64
+quantidade_ligacao_total_agua,quantidade_ligacao_total_agua,Meio-Ambiente,AG021 - Quantidade de ligações totais de água,INT64
+quantidade_ligacao_total_esgoto,quantidade_ligacao_total_esgoto,Meio-Ambiente,ES009 - Quantidade de ligações totais de esgotos,INT64
+quantidade_empregado,quantidade_empregado,Meio-Ambiente,FN026 - Quantidade total de empregados próprios,INT64
+despesa_pessoal,despesa_pessoal,Meio-Ambiente,FN010 - Despesa com pessoal próprio,FLOAT64
+arrecadacao_total,arrecadacao_total,Meio-Ambiente,FN006 - Arrecadação total (deflacionado para dezembro de 2023) ,FLOAT64
+investimento_agua_municipio,investimento_agua_municipio,Meio-Ambiente,FN042 - Investimento realizado em abastecimento de água pelo(s) município(s),FLOAT64
+investimento_agua_estado,investimento_agua_estado,Meio-Ambiente,FN052 - Investimento realizado em abastecimento de água pelo estado,FLOAT64
+investimento_agua_prestador,investimento_agua_prestador,Meio-Ambiente,FN023 - Investimento realizado em abastecimento de água pelo prestador de serviços,FLOAT64
+investimento_esgoto_municipio,investimento_esgoto_municipio,Meio-Ambiente,FN043 - Investimento realizado em esgotamento sanitário pelo(s) município(s),FLOAT64
+investimento_esgoto_estado,investimento_esgoto_estado,Meio-Ambiente,FN053 - Investimento realizado em esgotamento sanitário pelo estado,FLOAT64
+investimento_esgoto_prestador,investimento_esgoto_prestador,Meio-Ambiente,FN024 - Investimento realizado em esgotamento sanitário pelo prestador de serviços,FLOAT64
+indice_atendimento_total_agua,indice_atendimento_total_agua,Meio-Ambiente,IN055_AE - Índice de atendimento total de água,FLOAT64
+indice_atendimento_esgoto_agua,indice_atendimento_esgoto_agua,Meio-Ambiente,Índice de atendimento urbano de esgoto referido aos municípios atendidos com esgoto,FLOAT64
+id_municipio_nome,id_municipio_nome,Meio-Ambiente,Nome do município,STRING
+NM_UF,nm_uf,Meio-Ambiente,Nome UF (Estado),STRING
+area_total_municipio,area_total_municipio,Meio-Ambiente,Área total do município em km² conforme dados do IBGE,NUM
+desmatado_total_municipio,desmatado_total_municipio,Meio-Ambiente,"Área total desmatado do município em km², todos os biomas",NUM
+desmatado_total_amazonia,desmatado_total_amazonia,Meio-Ambiente,"Área total desmatado do município em km², bioma Amazônia",NUM
+desmatado_total_caatinga,desmatado_total_caatinga,Meio-Ambiente,"Área total desmatado do município em km², bioma Caatinga",NUM
+desmatado_total_cerrado,desmatado_total_cerrado,Meio-Ambiente,"Área total desmatado do município em km², bioma Cerrado",NUM
+desmatado_total_mata_atlantica,desmatado_total_mata_atlantica,Meio-Ambiente,"Área total desmatado do município em km², bioma Mata Atlântica",NUM
+desmatado_total_pampa,desmatado_total_pampa,Meio-Ambiente,"Área total desmatado do município em km², bioma Pampa",NUM
+desmatado_total_pantanal,desmatado_total_pantanal,Meio-Ambiente,"Área total desmatado do município em km², bioma Pantanal",NUM
+proporcao_desmatado,proporcao_desmatado,Meio-Ambiente,Proporção do total desmatado do município (divisão entre o total desmatado e a área total),NUM
+lag_total_desmatado,lag_total_desmatado,Meio-Ambiente,Área total desmatado do município em km² (defasagem de um ano),NUM
+taxa_crescimento_desmatamento_abs,taxa_crescimento_desmatamento_abs,Meio-Ambiente,Taxa de crescimento da Área total desmatado do município em km² ((Valor atual - valor defasado)/Valor defasado)*100,NUM
+id,id,,,
+AB1.1,capacidade_investimento_adaptacao,Meio-Ambiente,Capacidade de investimento público municipal e renda da população - investimentos em políticas de adaptação e em populações socioeconomicamente vulneráveis ,NUM
+AB1.2,capacidade_investimento_adaptacao_classe,Meio-Ambiente,Capacidade de investimento público municipal e renda da população - investimentos em políticas de adaptação e em populações socioeconomicamente vulneráveis (CLASSE),STRING
+AB2.1,indice_capacidade_adaptacao_inundacoes_enxurradas,Meio-Ambiente,"Índice de capacidade adaptativa para inundações, enxurradas e alagamentos ",NUM
+AB2.2,indice_capacidade_adaptacao_inundacoes_enxurradas_classe,Meio-Ambiente,"Índice de capacidade adaptativa para inundações, enxurradas e alagamentos  (CLASSE)",STRING
+AB3.1,indice_risco_inundacoes_enxurradas,Meio-Ambiente,"Índice de Risco para inundações, enxurradas e alagamentos ",NUM
+AB3.2,indice_risco_inundacoes_enxurradas_classe,Meio-Ambiente,"Índice de Risco para inundações, enxurradas e alagamentos (CLASSE)",STRING
+AB4.1,indice_vulnerabilidade_inundacoes_enxurradas,Meio-Ambiente,"Índice de vulnerabilidade para inundações, enxurradas e alagamentos",
+AB4.2,indice_vulnerabilidade_inundacoes_enxurradas_classe,Meio-Ambiente,"Índice de vulnerabilidade para inundações, enxurradas e alagamentos (CLASSE)",STRING
+AB6.1,cidades_resilientes,Meio-Ambiente,Adesão ao Programa Cidades Resilientes ,NUM
+AB6.2,cidades_resilientes_classe,Meio-Ambiente,Adesão ao Programa Cidades Resilientes (CLASSE),STRING
+AB7.1,indice_capacidade_adaptativa_recursos_hidricos,Meio-Ambiente,Índice de capacidade adaptativa - recursos hídricos,NUM
+AB7.2,indice_capacidade_adaptativa_recursos_hidricos_classe,Meio-Ambiente,Índice de capacidade adaptativa - recursos hídricos (CLASSE),STRING
+AB8.1,indice_risco_seca,Meio-Ambiente,Índice de risco de impacto para seca,NUM
+AB8.2,indice_risco_seca_classe,Meio-Ambiente,Índice de risco de impacto para seca (CLASSE),STRING
+AB9.1,indice_vulnerabilidade_seca,Meio-Ambiente,Índice de vulnerabilidade - seca ,NUM
+AB9.2,indice_vulnerabilidade_seca_classe,Meio-Ambiente,Índice de vulnerabilidade - seca (CLASSE),STRING
+dimensao_meio_ambiente,dimensao_meio_ambiente,,,
+pib,pib,Economia,PIB municipal (deflacionado dez/23),NUM
+impostos_liquidos,impostos_liquidos,Economia,"Impostos, líquidos de subsídios, sobre produtos a preços correntes (deflacionado dez/23)",NUM
+va,va,Economia,Valor adicionado bruto a preços correntes total (deflacionado dez/23),NUM
+va_agropecuaria,va_agropecuaria,Economia,Valor adicionado bruto a preços correntes da agropecuária (deflacionado dez/23),NUM
+va_industria,va_industria,Economia,Valor adicionado bruto a preços correntes da indústria (deflacionado dez/23),NUM
+va_servicos,va_servicos,Economia,"Valor adicionado bruto a preços correntes dos serviços, exclusive administração, defesa, educação e saúde públicas e seguridade social (deflacionado dez/23)",NUM
+va_adespss,va_adespss,Economia,"Valor adicionado bruto a preços correntes da administração, defesa, educação e saúde públicas e seguridade social (deflacionado dez/23)",NUM
+sigla_uf_nome,sigla_uf_nome,Economia,Nome da Unidade da Federação,STRING
+pib_per_capita,pib_per_capita,Economia,"Produto Interno Bruto a preços correntes (deflacionado dez/23), dividido pela população estimada",NUM
+impostos_pib,impostos_pib,Economia,Divisão entre impostos líquidos e PIB,NUM
+dependencia_adm,dependencia_adm,Economia,Divisão entre VA ADESPSS e VA geral,NUM
+dependencia_industria,dependencia_industria,Economia,Divisão entre VA Indústria e VA geral,NUM
+dependencia_agro,dependencia_agro,Economia,Divisão entre VA Agropecuária e VA geral,NUM
+dependencia_servicos,dependencia_servicos,Economia,Divisão entre VA Serviços e VA geral,NUM
+log_pib,log_pib,Economia,PIB em log10,NUM
+log_pib_per_capita,log_pib_per_capita,Economia,PIB per capita em log10,NUM
+log_valor_adicionado,log_valor_adicionado,Economia,VA em log10,NUM
+dimensao_economia,dimensao_economia,,,
+ano_avs,ano_avs,Sociedade,Ano de realização do Atlas,
+ivs,ivs,Sociedade,Índice de Vulnerabilidade Social,NUM
+ivs_infraestrutura_urbana,ivs_infraestrutura_urbana,Sociedade,Índice de Vulnerabilidade Social - Dimensão Infraestrutura Urbana,NUM
+ivs_capital_humano,ivs_capital_humano,Sociedade,Índice de Vulnerabilidade Social - Dimensão Capital Humano,NUM
+ivs_renda_trabalho,ivs_renda_trabalho,Sociedade,Índice de Vulnerabilidade Social - Dimensão Renda e Trabalho,NUM
+idhm,idhm,Sociedade,Índice de Desenvolvimento Humano Municipal,NUM
+proporcao_vulnerabilidade_socioeconomica,proporcao_vulnerabilidade_socioeconomica,Sociedade,Proporção das pessoas com renda per capita inferior a meio salario mínimo e gastam mais de uma hora até o trabalho,NUM
+prosperidade_social,prosperidade_social,Sociedade,Prosperidade Social,STRING
+dimensao_sociedade,dimensao_sociedade,,,
+total_receitas,total_receitas,Finanças,"Total de receitas municipais, considerando todos os estágios (deflacionado dez/23)",NUM
+total_receitas_fundeb,total_receitas_fundeb,Finanças,Produto Interno Bruto a preços correntes (deflacionado dez/23),NUM
+total_transferencias_constitucionais,total_transferencias_constitucionais,Finanças,"Impostos, líquidos de subsídios, sobre produtos a preços correntes (deflacionado dez/23)",NUM
+total_receitas_outras_deducoes,total_receitas_outras_deducoes,Finanças,Valor adicionado bruto a preços correntes total (deflacionado dez/23),NUM
+total_receitas_brutas,total_receitas_brutas,Finanças,Valor adicionado bruto a preços correntes da agropecuária (deflacionado dez/23),NUM
+total_receitas_realizadas,total_receitas_realizadas,Finanças,Valor adicionado bruto a preços correntes da indústria (deflacionado dez/23),NUM
+total_receitas_proprias,total_receitas_proprias,Finanças,"Valor adicionado bruto a preços correntes dos serviços, exclusive administração, defesa, educação e saúde públicas e seguridade social (deflacionado dez/23)",NUM
+total_receitas_proprias_realizadas,total_receitas_proprias_realizadas,Finanças,"Valor adicionado bruto a preços correntes da administração, defesa, educação e saúde públicas e seguridade social (deflacionado dez/23)",NUM
+razao_receitas_proprias,razao_receitas_proprias,Finanças,Razão Receitas Próprias em relação ao total de receita,NUM
+razao_receitas_proprias_realizadas,razao_receitas_proprias_realizadas,Finanças,Razão Receitas Próprias em relação ao total de receitas realizadas,NUM
+localidade_gasto,localidade_gasto,Finanças,,
+localidade_gasto_2,localidade_gasto_2,Finanças,,
+tipo_emenda,tipo_emenda,Finanças,Tipo de emenda igual a individual,
+valor_total,valor_emendas_total,Finanças,Valor de emendas pagas no município,
+Agricultura,valor_emendas_agricultura,Finanças,Valor de emendas pagas na função Agricultura,NUM
+Comércio.e.serviços,valor_emendas_comercio,Finanças,Valor de emendas pagas na função Comércio e serviços,
+Desporto.e.lazer,valor_emendas_desporto,Finanças,Valor de emendas pagas na função Desporto e lazer,
+Saúde,valor_emendas_saude,Finanças,Valor de emendas pagas na função Saúde,NUM
+Urbanismo,valor_emendas_urbanismo,Finanças,Valor de emendas pagas na função Urbanismo,NUM
+Organização.agrária,valor_emendas_organizacao_agraria,Finanças,Valor de emendas pagas na função Organização agrária,
+Assistência.social,valor_emendas_assistencia_social,Finanças,Valor de emendas pagas na função Assistência social,
+Educação,valor_emendas_educacao,Finanças,Valor de emendas pagas na função Educação,NUM
+Direitos.da.cidadania,valor_emendas_direitos_cidadania,Finanças,Valor de emendas pagas na função Direitos da cidadania,
+Defesa.nacional,valor_emendas_defesa,Finanças,Valor de emendas pagas na função Defesa nacional,
+Ciência.e.Tecnologia,valor_emendas_ciencia,Finanças,Valor de emendas pagas na função Ciência e Tecnologia,
+Cultura,valor_emendas_cultura,Finanças,Valor de emendas pagas na função Cultura,NUM
+Indústria,valor_emendas_industria,Finanças,Valor de emendas pagas na função Indústria,NUM
+Segurança.pública,valor_emendas_seguranca,Finanças,Valor de emendas pagas na função Segurança pública,
+Gestão.ambiental,valor_emendas_gestao_ambiental,Finanças,Valor de emendas pagas na função Gestão ambiental,
+Habitação,valor_emendas_habitacao,Finanças,Valor de emendas pagas na função Habitação,NUM
+Administração,valor_emendas_administracao,Finanças,Valor de emendas pagas na função Administração,NUM
+Saneamento,valor_emendas_saneamento,Finanças,Valor de emendas pagas na função Saneamento,NUM
+Trabalho,valor_emendas_trabalho,Finanças,Valor de emendas pagas na função Trabalho,NUM
+Transporte,valor_emendas_transporte,Finanças,Valor de emendas pagas na função Transporte,NUM
+Previdência.social,valor_emendas_previdencia,Finanças,Valor de emendas pagas na função Previdência social,
+Encargos.especiais,valor_emendas_encargos_especiais,Finanças,Valor de emendas pagas na função Encargos especiais,
+Múltiplo,valor_emendas_multiplo,Finanças,Valor de emendas pagas na função Múltiplo,NUM
+dimensao_financas_municipais,dimensao_financas_municipais,,,
+estatutarios_direta,estatutarios_direta,Recursos Humanos,Total de funcionários estatutários administração direta municipal,NUM
+clt_direta,clt_direta,Recursos Humanos,Total de funcionários CLT administração direta municipal,NUM
+comissionados_direta,comissionados_direta,Recursos Humanos,Total de funcionários comissionados administração direta municipal,NUM
+estagiarios_direta,estagiarios_direta,Recursos Humanos,Total de funcionários estagiários administração direta municipal,NUM
+sem_vinculo_permanente_direta,sem_vinculo_permanente_direta,Recursos Humanos,Total de funcionários sem vínculo permanente administração direta municipal,NUM
+total_funcionarios_direta,total_funcionarios_direta,Recursos Humanos,Total de funcionários administração direta municipal,NUM
+comiss_direta,comiss_direta,Recursos Humanos,Proporção de funcionários comissionados em relação ao total de funcionários (administração direta),NUM
+administracao_indireta,administracao_indireta,Recursos Humanos,Possui ou não administração indireta,STRING
+estatutarios_indireta,estatutarios_indireta,Recursos Humanos,Total de funcionários estatutários administração indireta municipal,NUM
+clt_indireta,clt_indireta,Recursos Humanos,Total de funcionários CLT administração indireta municipal,NUM
+comissionados_indireta,comissionados_indireta,Recursos Humanos,Total de funcionários comissionados administração indireta municipal,NUM
+estagiarios_indireta,estagiarios_indireta,Recursos Humanos,Total de funcionários estagiários administração indireta municipal,NUM
+sem_vinculo_permanente_indireta,sem_vinculo_permanente_indireta,Recursos Humanos,Total de funcionários sem vínculo permanente administração indireta municipal,NUM
+total_funcionarios_indireta,total_funcionarios_indireta,Recursos Humanos,Total de funcionários administração indireta municipal,NUM
+comiss_indireta,comiss_indireta,Recursos Humanos,Proporção de funcionários comissionados em relação ao total de funcionários (administração indireta),NUM
+dimensao_recursos_humanos,dimensao_recursos_humanos,,,
+total_violacoes,total_violacoes,Assistência Social e Direitos Humanos,Total de violações de Direitos Humanos denunciadas no Disque 100,NUM
+total_violacoes_crianca_adolescente,total_violacoes_crianca_adolescente,Assistência Social e Direitos Humanos,Total de violações de Direitos Humanos denunciadas no Disque 100 - Crianças e Adolescentes ,NUM
+total_violacoes_lgbtq,total_violacoes_lgbtq,Assistência Social e Direitos Humanos,Total de violações de Direitos Humanos denunciadas no Disque 100 - População LGBTQI+,NUM
+total_violacoes_pcd,total_violacoes_pcd,Assistência Social e Direitos Humanos,Total de violações de Direitos Humanos denunciadas no Disque 100 - Pessoas com Deficiência,NUM
+total_violacoes_pessoa_idosa,total_violacoes_pessoa_idosa,Assistência Social e Direitos Humanos,Total de violações de Direitos Humanos denunciadas no Disque 100 - Pessoas Idosas,NUM
+total_violacoes_religiao,total_violacoes_religiao,Assistência Social e Direitos Humanos,Total de violações de Direitos Humanos denunciadas no Disque 100 - Intolerância e discrminação religiosa,NUM
+cadun_qtd_familias_atualizadas_i,cadun_qtd_familias_atualizadas_i,Assistência Social e Direitos Humanos,Quantidade total de famílias com cadastro atualizado,NUM
+cadun_qtd_familias_atualizadas_pobreza_pbf_i,cadun_qtd_familias_atualizadas_pobreza_pbf_i,Assistência Social e Direitos Humanos,"Quantidade de famílias em situação de pobreza, segundo a faixa do Programa Bolsa Família*, com cadastro atualizado",NUM
+cadun_qtd_familias_atualizadas_baixa_renda_i,cadun_qtd_familias_atualizadas_baixa_renda_i,Assistência Social e Direitos Humanos,Quantidade de famílias de baixa renda** com cadastro atualizado,NUM
+cadun_qtd_familias_atualizadas_rfpc_ate_meio_sm_i,cadun_qtd_familias_atualizadas_rfpc_ate_meio_sm_i,Assistência Social e Direitos Humanos,Quantidade de famílias com renda per capita mensal até meio salário mínimo (Pobreza + Baixa renda) com cadastro atualizado,NUM
+cadun_qtd_familias_atualizadas_rfpc_acima_meio_sm_i,cadun_qtd_familias_atualizadas_rfpc_acima_meio_sm_i,Assistência Social e Direitos Humanos,Quantidade de famílias com renda per capita mensal maior que meio salário-mínimo*** com cadastro atualizado,NUM
+cadun_qtd_familias_atualizadas_renda_zero_i,cadun_qtd_familias_atualizadas_renda_zero_i,Assistência Social e Direitos Humanos,Quantidade de famílias com renda zero com cadastro atualizado,NUM
+cadun_taxa_atualizacao_cadastral_d,cadun_taxa_atualizacao_cadastral_d,Assistência Social e Direitos Humanos,Taxa geral de atualização cadastral,NUM
+cadun_taxa_atualizacao_cadastral_rfpc_ate_meio_sm_d,cadun_taxa_atualizacao_cadastral_rfpc_ate_meio_sm_d,Assistência Social e Direitos Humanos,Taxa de atualização cadastral das famílias com renda per capita mensal até meio salário mínimo (Pobreza + Baixa renda),NUM
+dimensao_assistencia_direitos_humanos,dimensao_assistencia_direitos_humanos,,,
+media_densidade_banda_larga_anual,media_densidade_banda_larga_anual,Energia e Internet,Média anual de densidade banda larga nos municípios (acesso por 100 domicílios),NUM
+media_densidade_banda_larga_anual_capital,media_densidade_banda_larga_anual_capital,Energia e Internet,Média anual de densidade banda larga na capital da UF (acesso por 100 domicílios),NUM
+prop_densidade_banda_larga_rel_capital,prop_densidade_banda_larga_rel_capital,Energia e Internet,Proporção da média anual de densidade banda larga nos municípios em relação a capital,NUM
+media_densidade_telefonia_movel_anual,media_densidade_telefonia_movel_anual,Energia e Internet,Média anual de densidade telefonia móvel nos municípios (acesso por 100 domicílios),NUM
+media_densidade_telefonia_movel_anual_capital,media_densidade_telefonia_movel_anual_capital,Energia e Internet,Média anual de densidade telefonia móvel na capital da UF (acesso por 100 domicílios),NUM
+prop_densidade_telefonia_movel_rel_capital,prop_densidade_telefonia_movel_rel_capital,Energia e Internet,Proporção da média anual de densidade telefonia móvel nos municípios em relação a capital,NUM
+domicilios_atendidos_lpt_ano,domicilios_atendidos_lpt_ano,Energia e Internet,Domicílios atendidos pelo Luz para Todos,NUM
+domicilios_atendidos_lpt_2004_2020,domicilios_atendidos_lpt_2004_2020,Energia e Internet,Total de domicílios atendidos pelo Luz para Todos desde o início do programa até 2020,NUM
+cobertura_eletricidade_00,cobertura_eletricidade_00,Energia e Internet,% de casas com acesso à eletricidade em 2000,NUM
+cobertura_eletricidade_10,cobertura_eletricidade_10,Energia e Internet,% de casas com acesso à eletricidade em 2010,NUM
+dimensao_energia_internet,dimensao_energia_internet,,,
+media_ideb,media_ideb,Educação,Média IDEB município,
+media_saeb,media_saeb,Educação,Média SAEB município,
+media_projecao,media_projecao,Educação,Média Projeção IDEB município,
+media_ideb_fundamental,media_ideb_fundamental,Educação,,
+media_ideb_medio,media_ideb_medio,Educação,,
+media_saeb_fundamental,media_saeb_fundamental,Educação,,
+media_saeb_medio,media_saeb_medio,Educação,,
+media_projecao_fundamental,media_projecao_fundamental,Educação,,
+media_projecao_medio,media_projecao_medio,Educação,,
+media_ideb_anos_finais,media_ideb_anos_finais,Educação,,
+media_ideb_anos_iniciais,media_ideb_anos_iniciais,Educação,,
+media_saeb_anos_finais,media_saeb_anos_finais,Educação,,
+media_saeb_anos_iniciais,media_saeb_anos_iniciais,Educação,,
+media_projecao_anos_finais,media_projecao_anos_finais,Educação,,
+media_projecao_anos_iniciais,media_projecao_anos_iniciais,Educação,,
+media_ideb_rede_estadual,media_ideb_rede_estadual,Educação,,
+media_ideb_rede_municipal,media_ideb_rede_municipal,Educação,,
+media_ideb_rede_federal,media_ideb_rede_federal,Educação,,
+media_saeb_rede_estadual,media_saeb_rede_estadual,Educação,,
+media_saeb_rede_municipal,media_saeb_rede_municipal,Educação,,
+media_saeb_rede_federal,media_saeb_rede_federal,Educação,,
+media_projecao_rede_estadual,media_projecao_rede_estadual,Educação,,
+media_projecao_rede_municipal,media_projecao_rede_municipal,Educação,,
+media_projecao_rede_federal,media_projecao_rede_federal,Educação,,
+ano_ideb,ano_ideb,Educação,Ano de realização do IDEB,
+total_institucoes,total_institucoes,Educação,Total de Instituições de Ensino Superior,NUM
+total_instituicoes_federais,total_instituicoes_federais,Educação,Total de Instituições de Ensino Superior Públicas Federais,NUM
+total_instituicoes_estaduais,total_instituicoes_estaduais,Educação,Total de Instituições de Ensino Superior Públicas Estaduais,NUM
+total_instituicoes_municipais,total_instituicoes_municipais,Educação,Total de Instituições de Ensino Superior Públicas Municipais,NUM
+total_instituicoes_privada_com_fins_lucrativos,total_instituicoes_privada_com_fins_lucrativos,Educação,Total de Instituições de Ensino Superior Privadas com fins lucrativos,NUM
+total_instituicoes_privada_sem_fins_lucrativos,total_instituicoes_privada_sem_fins_lucrativos,Educação,Total de Instituições de Ensino Superior Privadas sem fins lucrativos,NUM
+total_instituicoes_privada_particular,total_instituicoes_privada_particular,Educação,Total de Instituições de Ensino Superior Privadas Particulares,NUM
+total_instituicoes_especial,total_instituicoes_especial,Educação,Total de Instituições de Ensino Superior Especiais,NUM
+total_instituicoes_privada_comunitaria,total_instituicoes_privada_comunitaria,Educação,Total de Instituições de Ensino Superior Privadas Comunitárias,NUM
+total_instituicoes_privada_confessional,total_instituicoes_privada_confessional,Educação,Total de Instituições de Ensino Superior Privadas Confessionais,NUM
+dimensao_educacao,dimensao_educacao,,,
+cobertura_total,cobertura_total,Saúde,Percentual da cobertura total de vacinação da população alvo da política,NUM
+cobertura_bcg,cobertura_bcg,Saúde,Percentual da cobertura de vacinação da população alvo da política BCG,NUM
+cobertura_dtp,cobertura_dtp,Saúde,Percentual da cobertura de vacinação da população alvo da política DTP,NUM
+cobertura_dtpa_gestante,cobertura_dtpa_gestante,Saúde,Percentual da cobertura de vacinação da população alvo da política DTPA Gestante,NUM
+cobertura_febre_amarela,cobertura_febre_amarela,Saúde,Percentual da cobertura de vacinação da população alvo da política Febre Amarela,NUM
+cobertura_haemophilus_influenza_b,cobertura_haemophilus_influenza_b,Saúde,Percentual da cobertura de vacinação da população alvo da política Influenza B,NUM
+cobertura_hepatite_a,cobertura_hepatite_a,Saúde,Percentual da cobertura de vacinação da população alvo da política Hepatite A,NUM
+cobertura_hepatite_b,cobertura_hepatite_b,Saúde,Percentual da cobertura de vacinação da população alvo da política Hepatite B,NUM
+cobertura_penta,cobertura_penta,Saúde,Percentual da cobertura de vacinação da população alvo da política Penta,NUM
+cobertura_poliomielite,cobertura_poliomielite,Saúde,Percentual da cobertura de vacinação da população alvo da política Poliomelite,NUM
+cobertura_poliomielite_4anos,cobertura_poliomielite_4anos,Saúde,Percentual da cobertura de vacinação da população alvo da política Poliomielite 4 Anos,NUM
+cobertura_sarampo,cobertura_sarampo,Saúde,Percentual da cobertura de vacinação da população alvo da política Sarampo,NUM
+cobertura_tetra_viral,cobertura_tetra_viral,Saúde,Percentual da cobertura de vacinação da população alvo da política Tetra Viral,NUM
+cobertura_triplice_bacteriana,cobertura_triplice_bacteriana,Saúde,Percentual da cobertura de vacinação da população alvo da política Tríplice Bacteriana,NUM
+cobertura_triplice_viral_d1,cobertura_triplice_viral_d1,Saúde,Percentual da cobertura de vacinação da população alvo da política Tríplice Viral D1,NUM
+cobertura_triplice_viral_d2,cobertura_triplice_viral_d2,Saúde,Percentual da cobertura de vacinação da população alvo da política Tríplice Viral D2,NUM
+proporcao_cobertura_estrategia_saude_familia,proporcao_cobertura_estrategia_saude_familia,Saúde,Proporção da população coberta pela Estratégia Saúde da Família,NUM
+proporcao_cobertura_total_atencao_basica,proporcao_cobertura_total_atencao_basica,Saúde,Proporção da população coberta pela atenção básica,NUM
+sigla_uf,sigla_uf,Identificação,Sigla da Unidade da Federação,STRING
+cob_ab,cob_ab,Saúde,Cobertura da Atenção Básica (%),NUM
+cob_acs,cob_acs,Saúde,Cobertura de Agentes Comunitários de Saúde (%),NUM
+cob_esf,cob_esf,Saúde,Cobertura de Estratégia de Saúde da Família (%),NUM
+cob_vac_bcg,cob_vac_bcg,Saúde,Cobertura Vacinal de BCG (%),NUM
+cob_vac_rota,cob_vac_rota,Saúde,Cobertura Vacinal de Rotavírus Humano (%),NUM
+cob_vac_menin,cob_vac_menin,Saúde,Cobertura Vacinal de Meningococo C (%),NUM
+cob_vac_pneumo,cob_vac_pneumo,Saúde,Cobertura Vacinal de Pneumocócica (%),NUM
+cob_vac_polio,cob_vac_polio,Saúde,Cobertura Vacinal de Poliomielite (%),NUM
+cob_vac_tvd1,cob_vac_tvd1,Saúde,Cobertura Vacinal de Tríplice Viral (1ª Dose) (%),NUM
+cob_vac_penta,cob_vac_penta,Saúde,Cobertura Vacinal de Pentavalente (%),NUM
+cob_vac_hepb,cob_vac_hepb,Saúde,Cobertura Vacinal de Hepatite B em crianças até 30 dias (%),NUM
+cob_vac_hepa,cob_vac_hepa,Saúde,Cobertura Vacinal de Hepatite A (%),NUM
+pct_prenatal_adeq,pct_prenatal_adeq,Saúde,Nascidos Vivos com Pré-Natal Adequado (%),NUM
+pct_prenatal_zero,pct_prenatal_zero,Saúde,Nascidos Vivos com Nenhuma Consulta Pré-Natal (%),NUM
+pct_prenatal_1a6,pct_prenatal_1a6,Saúde,Nascidos Vivos com 1 a 6 Consultas Pré-Natal (%),NUM
+pct_prenatal_7m,pct_prenatal_7m,Saúde,Nascidos Vivos com 7 ou Mais Consultas Pré-Natal (%),NUM
+tx_mort,tx_mort,Saúde,Mortalidade Bruta (por 100.000 Hab.),NUM
+tx_mort_csap,tx_mort_csap,Saúde,Mortalidade Bruta por Condições Sensíveis a Atenção Primária (por 100.000 Hab.),NUM
+tx_mort_evit,tx_mort_evit,Saúde,Mortalidade Bruta por Causas Evitáveis (por 100.000 Hab.),NUM
+pct_mort_maldef,pct_mort_maldef,Saúde,Mortalidade Bruta por Causas Mal Definidas (%),NUM
+tx_mort_aj_oms,tx_mort_aj_oms,Saúde,"Mortalidade Ajustada (OMS, por 100.000 Hab.)",NUM
+tx_mort_csap_aj_oms,tx_mort_csap_aj_oms,Saúde,"Mortalidade Ajustada por Condições Sensíveis à Atenção Primária (OMS, por 100.000 Hab.)",NUM
+tx_mort_evit_aj_oms,tx_mort_evit_aj_oms,Saúde,"Mortalidade Ajustada por Causas Evitáveis (OMS, por 100.000 Hab.)",NUM
+tx_mort_aj_cens,tx_mort_aj_cens,Saúde,"Mortalidade Ajustada (Censo 2010, por 100.000 Hab.)",NUM
+tx_mort_csap_aj_cens,tx_mort_csap_aj_cens,Saúde,"Mortalidade Ajustada por Condições Sensíveis à Atenção Primária (Censo, por 100.000 Hab.)",NUM
+tx_mort_evit_aj_cens,tx_mort_evit_aj_cens,Saúde,"Mortalidade Ajustada por Causas Evitáveis (Censo, por 100.000 Hab.)",NUM
+tx_hosp,tx_hosp,Saúde,Hospitalizações (por 100.000 Hab.),NUM
+tx_hosp_csap,tx_hosp_csap,Saúde,Hospitalizações por Condições Sensíveis à Atenção Primária (por 100.000 Hab.),NUM
+tx_leito_sus,tx_leito_sus,Saúde,Leitos SUS (por 100.000 Hab.),NUM
+tx_leitouti_sus,tx_leitouti_sus,Saúde,Leitos de UTI SUS (por 100.000 Hab.),NUM
+tx_med,tx_med,Saúde,Médicos (por 1.000 Hab.),NUM
+tx_enf,tx_enf,Saúde,Enfermeiros (por 1.000 Hab.),NUM
+tx_med_ch,tx_med_ch,Saúde,"Médicos (Padronizados por Carga Horária, por 1.000 Hab.)",NUM
+tx_enf_ch,tx_enf_ch,Saúde,"Enfermeiros (Padronizados por Carga Horária, por 1.000 Hab.)",NUM
+n_leito_nsus,n_leito_nsus,Saúde,Número de Leitos Não-SUS,NUM
+n_leitouti_nsus,n_leitouti_nsus,Saúde,Número de Leitos de UTI Não-SUS,NUM
+tx_leito_nsus,tx_leito_nsus,Saúde,Leitos Não-SUS (por 100.000 Hab.),NUM
+tx_leitouti_nsus,tx_leitouti_nsus,Saúde,Leitos de UTI Não-SUS (por 100.000 Hab.),NUM
+cob_priv,cob_priv,Saúde,Cobertura de Planos de Saúde (%),NUM
+pct_desp_recp_saude_mun,pct_desp_recp_saude_mun,Saúde,Participação da Receita Própria Municipal Aplicada em Saúde - EC 29 (%),NUM
+desp_tot_saude_pc_mun,desp_tot_saude_pc_mun,Saúde,"Despesa Total com Saúde Sob Responsabilidade do Município (por Hab., R$)",NUM
+desp_recp_saude_pc_mun,desp_recp_saude_pc_mun,Saúde,"Despesa em Saúde Utilizando Recursos Próprios do Município (por Hab., R$)",NUM
+desp_tot_saude_pc_mun_def,desp_tot_saude_pc_mun_def,Saúde,"Despesa Total com Saúde Sob Responsabilidade do Município (por Hab., R$ de 2021)",NUM
+desp_recp_saude_pc_mun_def,desp_recp_saude_pc_mun_def,Saúde,"Despesa em Saúde Utilizando Recursos Próprios do Município (por Hab., R$ de 2021)",NUM
+gasto_pbf_pc_def,gasto_pbf_pc_def,Saúde,"Gasto com o Programa Bolsa Família (por Hab., R$ de 2021)",NUM
+dimensao_saude,dimensao_saude,,,
+ano_inicio,ano_inicio,Transportes,Ano início Tarifa Zero,
+adota_tarifa_zero,adota_tarifa_zero,Transportes,Adota Tarifa Zero,
+comprometimento_renda_domesticas_negras,comprometimento_renda_domesticas_negras,Transportes,Comprometimento da renda para trabalhadoras domésticas negras,FLOAT64
+comprometimento_salario_minimo,comprometimento_salario_minimo,Transportes,Comprometimento da renda de um salário mínimo,FLOAT64
+tarifas,tarifas,Transportes,Tarifa de transporte público para 26 capitais e Distrito Federal,FLOAT64
+municipio_Tarifa_Zero,municipio_tarifa_zero,Transportes,,
+dimensao_transportes,dimensao_transportes,Transportes,,
+qtd_uh,qtd_uh,,,
+qtd_uh_entregues,qtd_uh_entregues,Habitação e Zoneamento,Quantidade Unidades Habitacionais Entregues por ano no município,NUM
+qtd_uh_vigentes,qtd_uh_vigentes,Habitação e Zoneamento,Quantidade Unidades Habitacionais Em construção  por ano no município,NUM
+qtd_uh_distratadas,qtd_uh_distratadas,Habitação e Zoneamento,Quantidade Unidades Distratadas por ano no município,NUM
+val_contratado,val_contratado,Habitação e Zoneamento,"Valor contratado no MCMV, por ano por município",NUM
+val_desembolsado,val_desembolsado,Habitação e Zoneamento,"Valor desembolsado no MCMV, por ano por município",NUM
+dimensao_habitacao,dimensao_habitacao,,,
+total_mortalidade,total_mortalidade,Segurança,Total mortalidade município,NUM
+total_mortalidade_homicidio,total_mortalidade_homicidio,Segurança,Total mortalidade município - Foram considerados homicídios os registros cujas causas básicas de morte incluem os códigos dos seguintes intervalos: X85 a X99 e Y00 a Y05 (Cerqueira et al. 2015).,NUM
+total_mortalidade_alcool,total_mortalidade_alcool,Segurança,Total mortalidade município - Causas associadas a álcool F10 (https://iclinic.com.br/cid/f10/) ,NUM
+total_mortalidade_feminino,total_mortalidade_feminino,Segurança,Total mortalidade município - Feminino,NUM
+total_mortalidade_masculino,total_mortalidade_masculino,Segurança,Total mortalidade município - Masculino,NUM
+total_mortalidade_homicidio_feminino,total_mortalidade_homicidio_feminino,Segurança,Total mortalidade município - Feminino - Foram considerados homicídios os registros cujas causas básicas de morte incluem os códigos dos seguintes intervalos: X85 a X99 e Y00 a Y05 (Cerqueira et al. 2015).,NUM
+total_mortalidade_homicidio_masculino,total_mortalidade_homicidio_masculino,Segurança,Total mortalidade município - Masculino - Foram considerados homicídios os registros cujas causas básicas de morte incluem os códigos dos seguintes intervalos: X85 a X99 e Y00 a Y05 (Cerqueira et al. 2015).,NUM
+total_mortalidade_alcool_feminino,total_mortalidade_alcool_feminino,Segurança,Total mortalidade município - Feminino - Causas associadas a álcool F10 (https://iclinic.com.br/cid/f10/) ,NUM
+total_mortalidade_alcool_masculino,total_mortalidade_alcool_masculino,Segurança,Total mortalidade município - Masculino - Causas associadas a álcool F10 (https://iclinic.com.br/cid/f10/) ,NUM
+total_mortalidade_branca,total_mortalidade_branca,Segurança,Total mortalidade município - Branca,NUM
+total_mortalidade_preta,total_mortalidade_preta,Segurança,Total mortalidade município - Preta,NUM
+total_mortalidade_parda,total_mortalidade_parda,Segurança,Total mortalidade município - Parda,NUM
+total_mortalidade_amarela,total_mortalidade_amarela,Segurança,Total mortalidade município - Amarela,NUM
+total_mortalidade_indigena,total_mortalidade_indigena,Segurança,Total mortalidade município - Indígena,NUM
+total_mortalidade_preta_feminino,total_mortalidade_preta_feminino,Segurança,Total mortalidade município - Preta - Feminino,NUM
+total_mortalidade_parda_feminino,total_mortalidade_parda_feminino,Segurança,Total mortalidade município - Parda - Feminino,NUM
+total_mortalidade_branca_feminino,total_mortalidade_branca_feminino,Segurança,Total mortalidade município - Branca - Feminino,NUM
+total_mortalidade_amarela_feminino,total_mortalidade_amarela_feminino,Segurança,Total mortalidade município - Amarela - Feminino,NUM
+total_mortalidade_indigena_feminino,total_mortalidade_indigena_feminino,Segurança,Total mortalidade município - Indígena - Feminino,NUM
+total_mortalidade_homicidio_branca,total_mortalidade_homicidio_branca,Segurança,Total mortalidade município - Branca - Homicídio,NUM
+total_mortalidade_homicidio_preta,total_mortalidade_homicidio_preta,Segurança,Total mortalidade município - Preta - Homicídio,NUM
+total_mortalidade_homicidio_parda,total_mortalidade_homicidio_parda,Segurança,Total mortalidade município - Parda - Homicídio,NUM
+total_mortalidade_homicidio_amarela,total_mortalidade_homicidio_amarela,Segurança,Total mortalidade município - Amarela - Homicídio,NUM
+total_mortalidade_homicidio_indigena,total_mortalidade_homicidio_indigena,Segurança,Total mortalidade município - Indígena - Homicídio,NUM
+total_mortalidade_domicilio,total_mortalidade_domicilio,Segurança,Total mortalidade município - No domicílio,NUM
+total_mortalidade_homicidio_domicilio,total_mortalidade_homicidio_domicilio,Segurança,Total mortalidade município - Homicídio - No domicílio,NUM
+total_mortalidade_alcool_domicilio,total_mortalidade_alcool_domicilio,Segurança,Total mortalidade município - No domicílio - Causas relacionadas à álcool,NUM
+total_mortalidade_homicidio_feminino_domicilio,total_mortalidade_homicidio_feminino_domicilio,Segurança,Total mortalidade município - Homicídio - No domicílio - Feminino,NUM
+total_mortalidade_homicidio_masculino_domicilio,total_mortalidade_homicidio_masculino_domicilio,Segurança,Total mortalidade município - Homicídio - No domicílio - Masculino,NUM
+total_mortalidade_alcool_feminino_domicilio,total_mortalidade_alcool_feminino_domicilio,Segurança,Total mortalidade município - No domicílio - Causas relacionadas à álcool - Feminino,NUM
+total_mortalidade_alcool_masculino_domicilio,total_mortalidade_alcool_masculino_domicilio,Segurança,Total mortalidade município - No domicílio - Causas relacionadas à álcool - Masculino,NUM
+total_mortalidade_homicidio_branca_domicilio,total_mortalidade_homicidio_branca_domicilio,Segurança,Total mortalidade município - Homicídio - Branca - Domicílio,NUM
+total_mortalidade_homicidio_preta_domicilio,total_mortalidade_homicidio_preta_domicilio,Segurança,Total mortalidade município - Homicídio - Preta - Domicílio,NUM
+total_mortalidade_homicidio_parda_domicilio,total_mortalidade_homicidio_parda_domicilio,Segurança,Total mortalidade município - Homicídio - Parda - Domicílio,NUM
+total_mortalidade_homicidio_amarela_domicilio,total_mortalidade_homicidio_amarela_domicilio,Segurança,Total mortalidade município - Homicídio - Amarela - Domicílio,NUM
+total_mortalidade_homicidio_indigena_domicilio,total_mortalidade_homicidio_indigena_domicilio,Segurança,Total mortalidade município - Homicídio - Indígena - Domicílio,NUM
+quantidade_mortes_intervencao_policial_civil_fora_de_servico,quantidade_mortes_intervencao_policial_civil_fora_de_servico,Segurança,Quantidade de Mortes decorrentes de intervenções de Policiais Civis fora de serviço,NUM
+quantidade_feminicidio,quantidade_feminicidio,Segurança,Quantidade de Vítimas de Feminicídio,NUM
+quantidade_mortes_intervencao_policial_militar_fora_de_servico,quantidade_mortes_intervencao_policial_militar_fora_de_servico,Segurança,Quantidade de Mortes decorrentes de intervenções de Policiais Militares fora de serviço,NUM
+quantidade_furto_veiculos,quantidade_furto_veiculos,Segurança,Quantidade de Veículos Furtados,NUM
+quantidade_mortes_intervencao_policial_civil_em_servico,quantidade_mortes_intervencao_policial_civil_em_servico,Segurança,Quantidade de Mortes decorrentes de intervenções de Policiais Civis em serviço,NUM
+quantidade_estupro,quantidade_estupro,Segurança,"Quantidade de Vítimas por Estupro, incluindo as Vítimas de Estupro de Vulnerável",NUM
+quantidade_morte_policiais_civis_confronto_em_servico,quantidade_morte_policiais_civis_confronto_em_servico,Segurança,Quantidade de Policiais Civis mortos em confronto em serviço,NUM
+quantidade_mortes_intervencao_policial_militar_em_servico,quantidade_mortes_intervencao_policial_militar_em_servico,Segurança,Quantidade de Mortes decorrentes de intervenções de Policiais Militares em serviço,NUM
+quantidade_mortes_policiais_confronto,quantidade_mortes_policiais_confronto,Segurança,Quantidade de Policiais Civis e Militares Mortos em Situação de Confronto,NUM
+quantidade_mortes_violentas_intencionais,quantidade_mortes_violentas_intencionais,Segurança,Quantidade de Mortes Violentas Intencionais,NUM
+quantidade_posse_uso_entorpecente,quantidade_posse_uso_entorpecente,Segurança,Quantidade de Posse e Uso de Entorpecentes,NUM
+quantidade_morte_policiais_militares_fora_de_servico,quantidade_morte_policiais_militares_fora_de_servico,Segurança,Quantidade de Policiais Militares mortos em confronto ou por lesão não natural fora de serviço,NUM
+quantidade_morte_policiais_civis_fora_de_servico,quantidade_morte_policiais_civis_fora_de_servico,Segurança,Quantidade de Policiais Civis mortos em confronto ou por lesão não natural fora de serviço,NUM
+quantidade_latrocinio,quantidade_latrocinio,Segurança,Quantidade de Latrocínios,NUM
+quantidade_porte_ilegal_arma_de_fogo,quantidade_porte_ilegal_arma_de_fogo,Segurança,Quantidade de Ocorrências de Porte Ilegal de Arma de Fogo,NUM
+quantidade_mortes_intervencao_policial,quantidade_mortes_intervencao_policial,Segurança,Quantidade de Mortes Decorrentes de Intervenção Policial (em serviço e fora de serviço),NUM
+quantidade_roubo_furto_veiculos,quantidade_roubo_furto_veiculos,Segurança,Quantidade de Veículos Roubados e Furtados,NUM
+quantidade_posse_ilegal_arma_de_fogo,quantidade_posse_ilegal_arma_de_fogo,Segurança,Quantidade de Ocorrências de Posse Ilegal de Arma de Fogo,NUM
+quantidade_lesao_corporal_dolosa_violencia_domestica,quantidade_lesao_corporal_dolosa_violencia_domestica,Segurança,Quantidade de Vítimas de Lesão Corporal em Violência Doméstica,NUM
+quantidade_trafico_entorpecente,quantidade_trafico_entorpecente,Segurança,Quantidade de Ocorrências de Tráfico de Entorpecentes,NUM
+quantidade_roubo_veiculos,quantidade_roubo_veiculos,Segurança,Quantidade de Veículos Roubados,NUM
+quantidade_lesao_corporal_morte,quantidade_lesao_corporal_morte,Segurança,Quantidade de Lesões Corporais Seguida de Morte,NUM
+proporcao_mortes_intenvencao_policial_x_mortes_violentas_intencionais,proporcao_mortes_intenvencao_policial_x_mortes_violentas_intencionais,Segurança,Proporção de Mortes Decorrentes de Intervenções Policiais (MDIP) em relação às Mortes Violentas Intencionais (MVI),NUM
+quantidade_morte_policiais_militares_confronto_em_servico,quantidade_morte_policiais_militares_confronto_em_servico,Segurança,Quantidade de Policiais Militares mortos em confronto em serviço,NUM
+quantidade_posse_ilegal_porte_ilegal_arma_de_fogo,quantidade_posse_ilegal_porte_ilegal_arma_de_fogo,Segurança,Quantidade de Ocorrências de Posse Ilegal e Porte Ilegal de Arma de Fogo,NUM
+grupo,grupo,Segurança,Grupos segundo qualidade estimada dos registros estatísticos oficiais,STRING
+quantidade_homicidio_doloso,quantidade_homicidio_doloso,Segurança,Quantidade de Homicídios Dolosos,STRING
+dimensao_seguranca,dimensao_seguranca,,,
+total_acao,total_acao,Corrupção,Total de ações fiscalizadas nos municípios,NUM
+total_falhas_graves,total_falhas_graves,Corrupção,Total de falhas graves nas ações fiscalizadas nos municípios,NUM
+montante_fiscalizado,montante_fiscalizado,Corrupção,Montante de recursos fiscalizados (deflacionados para dezembro de 2023),NUM
+montante_fiscalizado_falha_grave,montante_fiscalizado_falha_grave,Corrupção,Montante de recursos fiscalizados classificados como falhas graves (deflacionados para dezembro de 2023),NUM
+prop_falhas_graves,prop_falhas_graves,Corrupção,Proporção de falhas graves em relação ao total de ações fiscalizadas,NUM
+montante_falhas_graves,montante_falhas_graves,Corrupção,Proporção do montante fiscalizado como falha grave em relação ao montante fiscalizado,NUM
+dimensao_corrupcao,dimensao_corrupcao,,,
+ln.pc.receita1920.sd,ln.pc.receita1920.sd,História,Valor de Receita tributária em 1923 em log e estandardizado (0-1),
+ln.admpub.1920.sd,ln.admpub.1920.sd,História,Valor do número de funcionários na administração pública em 1920 em log e estandardizado (0-1),NUM
+ln.forcapub.1920.sd,ln.forcapub.1920.sd,História,Valor do Número de funcionários da Força Pública em 1920 em log e estandardizado (0-1),NUM
+ln.rail1920.sd,ln.rail1920.sd,História,Valor do número de redes ferroviárias em 1920 em log e estandardizado (0-1),NUM
+amc1920,amc1920,História,Área mínima comparável 1920,NUM
+ln.dist.coast.sd,ln.dist.coast.sd,História,Valor da distância do município em relação à costa em log e estandardizado (0-1),NUM
+ln.dist.capital.sd,ln.dist.capital.sd,História,Valor da distância do município em relação à capital em log e estandardizado (0-1),NUM
+estimativa_ano_fundacao,estimativa_ano_fundacao,História,"Estimativa de ano fundação intercenso. Ou seja, se o município não existia no Censo de 2000 e passa a ser contado em 2010, o valor é 2010.",NUM
+dimensao_historica,dimensao_historica,,,
+total_aptos_prefeitura,total_aptos_prefeitura,Eleições,Total eleitores aptos disputa majoritária municipal (prefeitura),NUM
+total_comparecimento_prefeitura,total_comparecimento_prefeitura,Eleições,Total comparecimento prefeitura,NUM
+proporcao_comparecimento_prefeitura,proporcao_comparecimento_prefeitura,Eleições,Proporção comparecimento prefeitura,NUM
+proporcao_votos_nulos_prefeitura,proporcao_votos_nulos_prefeitura,Eleições,Proporção Votos Nulos Prefeitura,NUM
+proporcao_votos_nulos,proporcao_votos_nulos,Eleições,Proporção Votos Brancos Prefeitura,NUM
+turno,turno,Eleições,Turno da eleição,NUM
+NEP_prefeitura,nep_prefeitura,Eleições,Número efetivo de partidos - eleições prefeitura (Laakso e Taagepera 1979) ,NUM
+fracionalizacao_prefeitura,fracionalizacao_prefeitura,Eleições,Fracionalização Prefeitura (Rae 1971),NUM
+total_aptos_camara_vereadores,total_aptos_camara_vereadores,Eleições,Total eleitores aptos disputa proporcional municipal (Câmara de Vereadores),NUM
+total_comparecimento_camara_vereadores,total_comparecimento_camara_vereadores,Eleições,Total comparecimento Câmara de Vereadores,NUM
+proporcao_comparecimento_camara_vereadores,proporcao_comparecimento_camara_vereadores,Eleições,Proporção comparecimento Câmara de Vereadores,NUM
+proporcao_votos_brancos_camara_vereadores,proporcao_votos_brancos_camara_vereadores,Eleições,Proporção Votos Brancos Câmara de Vereadores,NUM
+proporcao_votos_nulos_camara_vereadores,proporcao_votos_nulos_camara_vereadores,Eleições,Proporção Votos Nulos Câmara de Vereadores,NUM
+NEP_camara_vereadores,nep_camara_vereadores,Eleições,Número efetivo de partidos - eleições Câmara de Vereadores,NUM
+fracionalizacao_camara_vereadores,fracionalizacao_camara_vereadores,Eleições,Fracionalização Câmara de Vereadores,NUM
+ano_eleicao,ano_eleicao,,,
+prefeito_eleito,prefeito_eleito,Eleições,Nome do prefeito eleito,NUM
+partido,partido,Eleições,Partido do prefeito eleito,NUM
+numero_partido,numero_partido,Eleições,Número do partido do prefeito eleito,NUM
+pct_votos_eleito,pct_votos_eleito,Eleições,% votos prefeito eleito,NUM
+partido_segundo_colocado,partido_segundo_colocado,Eleições,Partido do segundo colocado,NUM
+numero_segundo_colocado,numero_segundo_colocado,Eleições,Nº do partido do segundo colocado,NUM
+pct_votos_segundo_colocado,pct_votos_segundo_colocado,Eleições,% Votos do segundo colocado,NUM
+margem_votos,margem_votos,Eleições,Diferença de votos entre prefeito eleito e segundo colocado,NUM
+margem_pct,margem_pct,Eleições,Diferença entre % de votos de eleitos,NUM
+sg_partido_governador_eleito,sg_partido_governador_eleito,Eleições,Sigla Partido Governador Eleito,
+sg_partido_governador_segundo_lugar,sg_partido_governador_segundo_lugar,Eleições,,
+composicao_coligacao_governador_eleito,composicao_coligacao_governador_eleito,Eleições,,
+composicao_coligacao_governador_segundo_lugar,composicao_coligacao_governador_segundo_lugar,Eleições,,
+nm_urna_governador_eleito,nm_urna_governador_eleito,Eleições,,
+nm_urna_governador_segundo_lugar,nm_urna_governador_segundo_lugar,Eleições,,
+pct_votos_governador_eleito,pct_votos_governador_eleito,Eleições,,
+pct_votos_governador_segundo_lugar,pct_votos_governador_segundo_lugar,Eleições,,
+alinhado_partido_governador,alinhado_partido_governador,Eleições,Prefeito é do mesmo partido que governador?,NUM
+dimensao_eleicoes,dimensao_eleicoes,,,
