@@ -6,6 +6,8 @@ import plotly.io as pio
 import plotly.graph_objects as go
 from shapely import wkt
 import duckdb
+import json
+from shapely.geometry import shape
 
 # -------------------------------------------------
 # 🎨  Identidade visual
@@ -46,14 +48,53 @@ st.set_page_config(page_title="MAPE | Indicadores Municipais",
 st.markdown(
     f"""
     <style>
-        .main {{background-color:{BRAND['brown']};}}
-        [data-testid="stSidebar"] > div:first-child {{background-color:{BRAND['brown']};}}
-        .stButton > button {{background-color:{BRAND['olive']}!important;
-                             color:#fff!important; border:none!important; border-radius:8px!important;}}
-        .stButton > button:hover {{background-color:{BRAND['brown']}!important;}}
-        h1,h2,h3,h4,h5,h6 {{color:{BRAND['brown']}; font-weight:600;}}
+        /* Aplica branco apenas ao conteúdo textual da barra lateral */
+        [data-testid="stSidebar"] > div:first-child p,
+        [data-testid="stSidebar"] > div:first-child a,
+        [data-testid="stSidebar"] > div:first-child h1,
+        [data-testid="stSidebar"] > div:first-child h2,
+        [data-testid="stSidebar"] > div:first-child h3,
+        [data-testid="stSidebar"] > div:first-child h4,
+        [data-testid="stSidebar"] > div:first-child h5,
+        [data-testid="stSidebar"] > div:first-child h6,
+        [data-testid="stSidebar"] > div:first-child span {{
+            color: white !important;
+        }}
+
+        /* Mantém os textos dos inputs (select, etc) em preto */
+        [data-testid="stSidebar"] .stSelectbox,
+        [data-testid="stSidebar"] .stSelectbox * {{
+            color: black !important;
+        }}
+
+        .main {{
+            background-color: {BRAND['brown']};
+        }}
+
+        [data-testid="stSidebar"] > div:first-child {{
+            background-color: {BRAND['brown']};
+        }}
+
+        .stButton > button {{
+            background-color: {BRAND['olive']} !important;
+            color: #fff !important;
+            border: none !important;
+            border-radius: 8px !important;
+        }}
+
+        .stButton > button:hover {{
+            background-color: {BRAND['brown']} !important;
+        }}
+
+        h1, h2, h3, h4, h5, h6 {{
+            color: {BRAND['brown']};
+            font-weight: 600;
+        }}
     </style>
-    """, unsafe_allow_html=True)
+    """,
+    unsafe_allow_html=True
+)
+
 
 st.sidebar.image("../img/mape.jpg", use_container_width=True)
 st.sidebar.markdown(
@@ -68,9 +109,35 @@ st.sidebar.markdown(
 
 
 # -------------------------------------------------
+# 🏷️  Apresentação 
+# -------------------------------------------------
+st.title("`mape_municipios`")
+st.markdown("""
+            Dada a importância dos municípios para implementação de políticas públicas, 
+            e as grandes variações e desigualdades entre eles, o MAPE criou o `mape_municipios`. 
+            Consiste em um dos mais completos bancos de dados sobre informações dos municípios 
+            brasileiros, cobrindo escopo temporal de 30 anos, 17 dimensões, 31 pesquisas e 451 variáveis. 
+            O objetivo é oferecer informações de maneira unificada e qualificada para pesquisadores/as, 
+            gestores/as e sociedade civil, que embase boas pesquisas e boa tomada de decisão no campo das 
+            políticas públicas.
+            
+            Nessa aplicação, você pode explorar os dados de forma interativa. No painel lateral,
+            escolha o indicador e o ano desejados. Você verá um mapa coroplético, um gráfico de linha
+            com a evolução temporal do indicador e um gráfico de dispersão para comparar dois indicadores.
+            """)
+
+
+# -------------------------------------------------
 # 📂 DuckDB connection & lazy tables
 # -------------------------------------------------
-con = duckdb.connect("../data/mape.duckdb")
+@st.cache_resource(show_spinner=False)
+def get_duckdb():
+    con = duckdb.connect("../data/mape.duckdb", read_only=True)
+    # spatial + httpfs are the only two extra things we need
+    con.execute("LOAD spatial;")
+    return con
+
+con = get_duckdb()                 # ← replace the global `con = duckdb.connect(...)`
 
 
 # -------------------------------------------------
@@ -106,52 +173,55 @@ indicador2 = (
     indicador1 if not indicator_cols2 else st.sidebar.selectbox("Segundo indicador:", indicator_cols2)
 )
 
+dicionario = con.sql(
+    f"""
+    SELECT Nome_banco, Descrição
+    FROM dicionario_mape_municipios
+    WHERE Nome_banco = '{indicador1}' OR Nome_banco = '{indicador2}'
+    """
+).df()
 
-# -------------------------------------------------
-# 🏷️  Apresentação 
-# -------------------------------------------------
-st.title("`mape_municipios`")
-st.markdown("""
-            Dada a importância dos municípios para implementação de políticas públicas, 
-            e as grandes variações e desigualdades entre eles, o MAPE criou o `mape_municipios`. 
-            Consiste em um dos mais completos bancos de dados sobre informações dos municípios 
-            brasileiros, cobrindo escopo temporal de 30 anos, 17 dimensões, 31 pesquisas e 451 variáveis. 
-            O objetivo é oferecer informações de maneira unificada e qualificada para pesquisadores/as, 
-            gestores/as e sociedade civil, que embase boas pesquisas e boa tomada de decisão no campo das 
-            políticas públicas.
-            
-            Nessa aplicação, você pode explorar os dados de forma interativa. No painel lateral,
-            escolha o indicador e o ano desejados. Você verá um mapa coroplético, um gráfico de linha
-            com a evolução temporal do indicador e um gráfico de dispersão para comparar dois indicadores.
-            """)
+# mostrar dicionário de dados
+if not dicionario.empty:
+    st.sidebar.markdown("---")
+    st.sidebar.subheader("Dicionário de Dados")
+    for _, row in dicionario.iterrows():
+        st.sidebar.markdown(f"**{row['Nome_banco']}**: {row['Descrição']}")
 
 
 ######################
 st.markdown("---")
 ######################
 
+
 # -------------------------------------------------
 # 🗺️  1. Mapa coroplético
 # -------------------------------------------------
-st.subheader(f"🌎 Distribuição territorial » {indicador1.replace('_',' ').capitalize()} ({ano})")
+st.subheader(f"🗺️ Distribuição territorial » {indicador1.replace('_',' ').capitalize()} ({ano})")
 
-map_df = con.sql(
+tbl = con.sql(
     f"""
-    SELECT d.id_municipio, d.{indicador1}, m.geometry
-    FROM mape_municipios d
-    JOIN municipalities m ON d.id_municipio = m.code_muni
-    WHERE d.ano = {ano} AND m.geometry IS NOT NULL
+    SELECT m.name_muni AS nome_municipio,
+           d.{indicador1},
+           ST_AsText(m.geometry) AS geometry_wkt
+    FROM   mape_municipios d
+    JOIN   municipalities  m 
+    ON d.id_municipio = m.code_muni
+    WHERE  d.ano = {ano} AND d.{indicador1} IS NOT NULL
     """
 ).df()
-map_df["geometry"] = map_df["geometry"].apply(wkt.loads)
-gdf = gpd.GeoDataFrame(map_df, geometry="geometry")
+
+tbl["geometry"] = gpd.GeoSeries.from_wkt(tbl["geometry_wkt"])
+gdf = gpd.GeoDataFrame(tbl, geometry="geometry")
+gdf = gdf.drop(columns=["geometry_wkt"])
+
 
 fig_map = px.choropleth_map(
     gdf,
     geojson=gdf.geometry,
     locations=gdf.index,
     color=indicador1,
-    hover_data={"id_municipio": True, indicador1: ":.2f"},
+    hover_data={"nome_municipio": True, indicador1: ":.2f"},
     map_style="carto-positron",
     zoom=3,
     center={"lat": -14.235, "lon": -51.9253},
@@ -234,8 +304,12 @@ st.subheader(f"🔬 Relação entre indicadores » {indicador1.replace('_',' ').
 
 scat_df = con.sql(
     f"""
-    SELECT id_municipio, {indicador1}, {indicador2}
-    FROM mape_municipios
+    SELECT m.name_muni AS nome_municipio, 
+           d.{indicador1}, 
+           d.{indicador2}
+    FROM mape_municipios AS d
+    JOIN   municipalities AS m 
+    ON d.id_municipio = m.code_muni
     WHERE ano = {ano} AND {indicador1} IS NOT NULL AND {indicador2} IS NOT NULL
     """,
 ).df()
@@ -248,7 +322,7 @@ else:
         x=indicador1,
         y=indicador2,
         size_max=25,
-        hover_name="id_municipio",
+        hover_name="nome_municipio",
         trendline="ols",
         opacity=0.7,
         labels={

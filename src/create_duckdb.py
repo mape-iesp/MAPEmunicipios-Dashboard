@@ -16,4 +16,11 @@ con.sql(
     """
 )
 
+con.sql(
+    """
+    CREATE TABLE IF NOT EXISTS dicionario_mape_municipios AS
+    SELECT * FROM read_csv_auto('../data/dicionario.csv', header=True, sep=',')
+    """
+)
+
 con.close()
