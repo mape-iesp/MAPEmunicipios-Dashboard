@@ -43,7 +43,7 @@ CHORO_SCALE = [
 # ⚙️  Configuração da página
 # -------------------------------------------------
 st.set_page_config(page_title="MAPE | Indicadores Municipais",
-                   page_icon="../img/favicon.ico", layout="wide")
+                   page_icon="img/favicon.ico", layout="wide")
 
 st.markdown(
     f"""
@@ -96,7 +96,7 @@ st.markdown(
 )
 
 
-st.sidebar.image("../img/mape.jpg", use_container_width=True)
+st.sidebar.image("img/mape.jpg", use_container_width=True)
 st.sidebar.markdown(
     """
     **MAPE** é o Laboratório de Monitoramento e Avaliação de Políticas e Eleições do
@@ -130,14 +130,14 @@ st.markdown("""
 # -------------------------------------------------
 # 📂 DuckDB connection & lazy tables
 # -------------------------------------------------
-@st.cache_resource(show_spinner=False)
+@st.cache_resource(show_spinner=True)
 def get_duckdb():
-    con = duckdb.connect("../data/mape.duckdb", read_only=True)
-    # spatial + httpfs are the only two extra things we need
+    duckdb.execute("INSTALL spatial;")
+    con = duckdb.connect("data/mape.duckdb", read_only=True)
     con.execute("LOAD spatial;")
     return con
 
-con = get_duckdb()                 # ← replace the global `con = duckdb.connect(...)`
+con = get_duckdb()
 
 
 # -------------------------------------------------
@@ -154,24 +154,37 @@ indicator_cols = [c for c in cols_info["name"].tolist() if c not in exclude_cols
 st.sidebar.header("Configurações")
 
 padrao = "total_desastres" if "total_desastres" in indicator_cols else indicator_cols[0]
-indicador1 = st.sidebar.selectbox("Indicador principal:", indicator_cols,
-                                 index=indicator_cols.index(padrao))
+indicador1 = st.sidebar.selectbox("Indicador principal:", 
+                                  indicator_cols,
+                                  index=indicator_cols.index(padrao))
 
 anos_validos = con.sql(
     f"SELECT DISTINCT ano FROM mape_municipios WHERE {indicador1} IS NOT NULL ORDER BY ano"
 ).df()["ano"].tolist()
 
-if not anos_validos:
-    st.error("Indicador selecionado sem valores.")
-    st.stop()
-
 default_year = 2023 if 2023 in anos_validos else anos_validos[-1]
 ano = st.sidebar.selectbox("Ano:", anos_validos, index=anos_validos.index(default_year))
 
-indicator_cols2 = [c for c in indicator_cols if c != indicador1]
-indicador2 = (
-    indicador1 if not indicator_cols2 else st.sidebar.selectbox("Segundo indicador:", indicator_cols2)
-)
+# Candidatos ao segundo indicador (exceto o primeiro)
+candidates = [c for c in indicator_cols if c != indicador1]
+
+# pega as colunas que possuem dados para o ano selecionado
+if candidates:
+    query = ", ".join(
+        f"SUM({c} IS NOT NULL) AS {c}" for c in candidates
+    )
+    result = con.sql(f"SELECT {query} FROM mape_municipios WHERE ano = {ano}").df().iloc[0]
+    valid_cols = [col for col in candidates if result[col] > 0]
+else:
+    valid_cols = []
+
+# Se houver colunas válidas, mostra o selectbox
+if valid_cols:
+    indicador2 = st.sidebar.selectbox("Segundo indicador:", valid_cols)
+else:
+    st.info("Nenhum outro indicador contém dados nesse ano. Usando o indicador principal.")
+    indicador2 = indicador1
+
 
 dicionario = con.sql(
     f"""
@@ -181,12 +194,9 @@ dicionario = con.sql(
     """
 ).df()
 
-# mostrar dicionário de dados
-if not dicionario.empty:
-    st.sidebar.markdown("---")
-    st.sidebar.subheader("Dicionário de Dados")
-    for _, row in dicionario.iterrows():
-        st.sidebar.markdown(f"**{row['Nome_banco']}**: {row['Descrição']}")
+st.sidebar.subheader("Dicionário de Dados")
+for _, row in dicionario.iterrows():
+    st.sidebar.markdown(f"**{row['Nome_banco']}**: {row['Descrição']}")
 
 
 ######################
@@ -194,55 +204,125 @@ st.markdown("---")
 ######################
 
 
-# -------------------------------------------------
-# 🗺️  1. Mapa coroplético
-# -------------------------------------------------
-st.subheader(f"🗺️ Distribuição territorial » {indicador1.replace('_',' ').capitalize()} ({ano})")
+# # -------------------------------------------------
+# # 🗺️  1. Mapa coroplético
+# # -------------------------------------------------
+# st.subheader(f"🗺️ Distribuição territorial » {indicador1.replace('_',' ').capitalize()} ({ano})")
+# with st.spinner("🗺️ Gerando mapa coroplético..."):
+#     st.markdown("Extraindo os dados do banco DuckDB...")
+#     tbl = con.sql(
+#         f"""
+#         SELECT m.name_muni AS nome_municipio,
+#             d.{indicador1},
+#             ST_AsText(m.geometry) AS geometry_wkt
+#         FROM   mape_municipios d
+#         JOIN   municipalities  m 
+#         ON d.id_municipio = m.code_muni
+#         WHERE  d.ano = {ano} AND d.{indicador1} IS NOT NULL
+#         """
+#     ).df()
 
-tbl = con.sql(
-    f"""
-    SELECT m.name_muni AS nome_municipio,
-           d.{indicador1},
-           ST_AsText(m.geometry) AS geometry_wkt
-    FROM   mape_municipios d
-    JOIN   municipalities  m 
-    ON d.id_municipio = m.code_muni
-    WHERE  d.ano = {ano} AND d.{indicador1} IS NOT NULL
+#     st.markdown("Convertendo geometria WKT para GeoDataFrame...")
+#     tbl["geometry"] = gpd.GeoSeries.from_wkt(tbl["geometry_wkt"])
+#     gdf = gpd.GeoDataFrame(tbl, geometry="geometry")
+#     gdf = gdf.drop(columns=["geometry_wkt"])
+
+#     st.markdown("Definindo o índice do GeoDataFrame...")
+#     fig_map = px.choropleth_map(
+#         gdf,
+#         geojson=gdf.geometry,
+#         locations=gdf.index,
+#         color=indicador1,
+#         hover_data={"nome_municipio": True, indicador1: ":.2f"},
+#         map_style="carto-positron",
+#         zoom=3,
+#         center={"lat": -14.235, "lon": -51.9253},
+#         opacity=0.8,
+#         color_continuous_scale=CHORO_SCALE,
+#         labels={indicador1: indicador1.replace('_',' ').capitalize()},
+#         template="mape",
+#     )
+#     # Barra de cor horizontal
+#     fig_map.update_coloraxes(colorbar=dict(title="", 
+#                                         orientation="h", 
+#                                         x=0.5, 
+#                                         y=-0.15,
+#                                         xanchor="center", 
+#                                         yanchor="top", 
+#                                         len=0.7,
+#                                         thickness=15))
+
+#     st.markdown("Ajustando layout do mapa...")
+#     # aumenta o tamanho do mapa
+#     fig_map.update_layout(margin=dict(l=0, r=0, t=0, b=0), height=650)
+#     st.plotly_chart(fig_map, use_container_width=True)
+
+# -------------------------------------------------
+# 🗺️  1. Mapa coroplético (corrigido + rápido)
+# -------------------------------------------------
+@st.cache_data(show_spinner=False)
+def load_map_data(indicador: str, ano: int, tol: float = 0.01):
+    q = f"""
+        SELECT m.code_muni      AS id,
+               m.name_muni      AS nome_municipio,
+               d.{indicador}    AS valor,
+               ST_AsGeoJSON(
+                   ST_SimplifyPreserveTopology(m.geometry, {tol})
+               )               AS geojson
+        FROM   mape_municipios d
+        JOIN   municipalities m ON d.id_municipio = m.code_muni
+        WHERE  d.ano = {ano} AND d.{indicador} IS NOT NULL
     """
-).df()
+    df = con.sql(q).df()
 
-tbl["geometry"] = gpd.GeoSeries.from_wkt(tbl["geometry_wkt"])
-gdf = gpd.GeoDataFrame(tbl, geometry="geometry")
-gdf = gdf.drop(columns=["geometry_wkt"])
+    # monta FeatureCollection
+    features = [
+        {
+            "type": "Feature",
+            "geometry": json.loads(row.geojson),
+            # -->  id DENTRO de properties para casar com featureidkey
+            "properties": {"id": str(row.id)}
+        }
+        for row in df.itertuples()
+    ]
+    geojson = {"type": "FeatureCollection", "features": features}
+    df["id"] = df["id"].astype(str)      # <-- garante string
+    return df, geojson
 
 
-fig_map = px.choropleth_map(
-    gdf,
-    geojson=gdf.geometry,
-    locations=gdf.index,
-    color=indicador1,
-    hover_data={"nome_municipio": True, indicador1: ":.2f"},
-    map_style="carto-positron",
-    zoom=3,
-    center={"lat": -14.235, "lon": -51.9253},
-    opacity=0.8,
-    color_continuous_scale=CHORO_SCALE,
-    labels={indicador1: indicador1.replace('_',' ').capitalize()},
-    template="mape",
-)
-# Barra de cor horizontal
-fig_map.update_coloraxes(colorbar=dict(title="", 
-                                       orientation="h", 
-                                       x=0.5, 
-                                       y=-0.15,
-                                       xanchor="center", 
-                                       yanchor="top", 
-                                       len=0.7,
-                                       thickness=15))
+st.subheader(f"🗺️ Distribuição territorial » "
+             f"{indicador1.replace('_',' ').capitalize()} ({ano})")
 
-# aumenta o tamanho do mapa
-fig_map.update_layout(margin=dict(l=0, r=0, t=0, b=0), height=650)
-st.plotly_chart(fig_map, use_container_width=True)
+with st.spinner("🗺️ Gerando mapa coroplético..."):
+    map_df, muni_geojson = load_map_data(indicador1, ano)
+
+    fig_map = px.choropleth_map(
+        map_df,
+        geojson=muni_geojson,
+        locations="id",
+        color="valor",
+        featureidkey="properties.id",     # <-- caminho correto
+        hover_name="nome_municipio",
+        hover_data={"valor":":.2f"},
+        map_style="carto-positron",
+        center={"lat": -14.235, "lon": -51.9253},
+        zoom=3,
+        opacity=0.8,
+        color_continuous_scale=CHORO_SCALE,
+        labels={"valor": indicador1.replace('_',' ').capitalize()},
+        template="mape",
+    )
+
+    # barra de cor horizontal
+    fig_map.update_coloraxes(colorbar=dict(
+        title="", orientation="h", x=0.5, y=-0.15,
+        xanchor="center", yanchor="top", len=0.7, thickness=15)
+    )
+    fig_map.update_layout(margin=dict(l=0, r=0, t=0, b=0), height=650)
+
+    st.plotly_chart(fig_map, use_container_width=True)
+
+
 
 
 ######################
@@ -255,41 +335,42 @@ st.markdown("---")
 # -------------------------------------------------
 st.subheader(f"📈 Evolução temporal » {indicador1.replace('_',' ').capitalize()} ({ano})")
 
-line_df = con.sql(
-    f"""
-    SELECT ano, SUM({indicador1}) AS {indicador1}
-    FROM mape_municipios
-    WHERE {indicador1} IS NOT NULL
-    GROUP BY ano
-    HAVING SUM({indicador1}) > 0
-    ORDER BY ano
-    """
-).df()
+with st.spinner("📈 Carregando evolução temporal..."):
+    line_df = con.sql(
+        f"""
+        SELECT ano, SUM({indicador1}) AS {indicador1}
+        FROM mape_municipios
+        WHERE {indicador1} IS NOT NULL
+        GROUP BY ano
+        HAVING SUM({indicador1}) > 0
+        ORDER BY ano
+        """
+    ).df()
 
-fig_line = px.area(
-    line_df,
-    x="ano",
-    y=indicador1,
-    labels={"ano": "Ano", indicador1: indicador1.replace('_',' ').capitalize()},
-    template="mape",
-)
-fig_line.update_traces(line=dict(width=2, color=BRAND["brown"]), opacity=0.3)
+    fig_line = px.area(
+        line_df,
+        x="ano",
+        y=indicador1,
+        labels={"ano": "Ano", indicador1: indicador1.replace('_',' ').capitalize()},
+        template="mape",
+    )
+    fig_line.update_traces(line=dict(width=2, color=BRAND["brown"]), opacity=0.3)
 
-# Linha sobreposta para contorno
-fig_line.add_scatter(x=line_df["ano"], y=line_df[indicador1], mode="lines",
-                     line=dict(width=3, color=BRAND["olive"]), showlegend=False)
-# Destaque do último ponto
-fig_line.add_scatter(x=[line_df["ano"].iloc[-1]],
-                     y=[line_df[indicador1].iloc[-1]],
-                     mode="markers+text",
-                     marker=dict(size=12, color=BRAND["brown"]),
-                     text=[f"{line_df[indicador1].iloc[-1]:.2f}"], textposition="top center",
-                     showlegend=False)
+    # Linha sobreposta para contorno
+    fig_line.add_scatter(x=line_df["ano"], y=line_df[indicador1], mode="lines",
+                        line=dict(width=3, color=BRAND["olive"]), showlegend=False)
+    # Destaque do último ponto
+    fig_line.add_scatter(x=[line_df["ano"].iloc[-1]],
+                        y=[line_df[indicador1].iloc[-1]],
+                        mode="markers+text",
+                        marker=dict(size=12, color=BRAND["brown"]),
+                        text=[f"{line_df[indicador1].iloc[-1]:.2f}"], textposition="top center",
+                        showlegend=False)
 
-fig_line.update_yaxes(showgrid=True, gridcolor=BRAND["sand"], zeroline=False)
-fig_line.update_xaxes(showgrid=False)
+    fig_line.update_yaxes(showgrid=True, gridcolor=BRAND["sand"], zeroline=False)
+    fig_line.update_xaxes(showgrid=False)
 
-st.plotly_chart(fig_line, use_container_width=True)
+    st.plotly_chart(fig_line, use_container_width=True)
 
 
 ######################
@@ -302,35 +383,36 @@ st.markdown("---")
 # -------------------------------------------------
 st.subheader(f"🔬 Relação entre indicadores » {indicador1.replace('_',' ').capitalize()} x  {indicador2.replace('_',' ').capitalize()} ({ano})")
 
-scat_df = con.sql(
-    f"""
-    SELECT m.name_muni AS nome_municipio, 
-           d.{indicador1}, 
-           d.{indicador2}
-    FROM mape_municipios AS d
-    JOIN   municipalities AS m 
-    ON d.id_municipio = m.code_muni
-    WHERE ano = {ano} AND {indicador1} IS NOT NULL AND {indicador2} IS NOT NULL
-    """,
-).df()
+with st.spinner("🔄 Analisando relação entre indicadores..."):
+    scat_df = con.sql(
+        f"""
+        SELECT m.name_muni AS nome_municipio, 
+            d.{indicador1}, 
+            d.{indicador2}
+        FROM mape_municipios AS d
+        JOIN   municipalities AS m 
+        ON d.id_municipio = m.code_muni
+        WHERE ano = {ano} AND {indicador1} IS NOT NULL AND {indicador2} IS NOT NULL
+        """,
+    ).df()
 
-if scat_df.empty:
-    st.info("Sem dados suficientes para o scatterplot.")
-else:
-    fig_scat = px.scatter(
-        scat_df,
-        x=indicador1,
-        y=indicador2,
-        size_max=25,
-        hover_name="nome_municipio",
-        trendline="ols",
-        opacity=0.7,
-        labels={
-            indicador1: indicador1.replace('_',' ').capitalize(),
-            indicador2: indicador2.replace('_',' ').capitalize(),
-        },
-        template="mape",
-    )
+    if scat_df.empty:
+        st.info("Sem dados suficientes para o scatterplot.")
+    else:
+        fig_scat = px.scatter(
+            scat_df,
+            x=indicador1,
+            y=indicador2,
+            size_max=25,
+            hover_name="nome_municipio",
+            trendline="ols",
+            opacity=0.7,
+            labels={
+                indicador1: indicador1.replace('_',' ').capitalize(),
+                indicador2: indicador2.replace('_',' ').capitalize(),
+            },
+            template="mape",
+        )
 
-    st.plotly_chart(fig_scat, use_container_width=True)
+        st.plotly_chart(fig_scat, use_container_width=True)
 
